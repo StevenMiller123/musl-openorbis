@@ -108,7 +108,7 @@ typedef struct __ucontext {
 #define SA_RESETHAND 0x4
 #define SA_NODEFER   0x10
 #define SA_NOCLDWAIT 0x20
-#define SA_SIGNINFO  0x40
+#define SA_SIGINFO  0x40
 
 #endif
 
