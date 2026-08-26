@@ -3,13 +3,13 @@
 #include "locale_impl.h"
 
 #if (SIGHUP == 1) && (SIGINT == 2) && (SIGQUIT == 3) && (SIGILL == 4) \
- && (SIGTRAP == 5) && (SIGABRT == 6) && (SIGBUS == 7) && (SIGFPE == 8) \
- && (SIGKILL == 9) && (SIGUSR1 == 10) && (SIGSEGV == 11) && (SIGUSR2 == 12) \
- && (SIGPIPE == 13) && (SIGALRM == 14) && (SIGTERM == 15) && (SIGSTKFLT == 16) \
- && (SIGCHLD == 17) && (SIGCONT == 18) && (SIGSTOP == 19) && (SIGTSTP == 20) \
- && (SIGTTIN == 21) && (SIGTTOU == 22) && (SIGURG == 23) && (SIGXCPU == 24) \
+ && (SIGTRAP == 5) && (SIGABRT == 6) && (SIGEMT == 7) && (SIGFPE == 8) \
+ && (SIGKILL == 9) && (SIGBUS == 10) && (SIGSEGV == 11) && (SIGSYS == 12) \
+ && (SIGPIPE == 13) && (SIGALRM == 14) && (SIGTERM == 15) && (SIGURG == 16) \
+ && (SIGSTOP == 17) && (SIGTSTP == 18) && (SIGCONT == 19) && (SIGCHLD == 20) \
+ && (SIGTTIN == 21) && (SIGTTOU == 22) && (SIGIO == 23) && (SIGXCPU == 24) \
  && (SIGXFSZ == 25) && (SIGVTALRM == 26) && (SIGPROF == 27) && (SIGWINCH == 28) \
- && (SIGPOLL == 29) && (SIGPWR == 30) && (SIGSYS == 31)
+ && (SIGINFO == 29) && (SIGUSR1 == 30) && (SIGUSR2 == 31)
 
 #define sigmap(x) x
 
@@ -22,31 +22,31 @@ static const char map[] = {
 	[SIGILL]    = 4,
 	[SIGTRAP]   = 5,
 	[SIGABRT]   = 6,
-	[SIGBUS]    = 7,
+	[SIGEMT]    = 7,
 	[SIGFPE]    = 8,
 	[SIGKILL]   = 9,
-	[SIGUSR1]   = 10,
+	[SIGBUS]    = 10,
 	[SIGSEGV]   = 11,
-	[SIGUSR2]   = 12,
+	[SIGSYS]    = 12,
 	[SIGPIPE]   = 13,
 	[SIGALRM]   = 14,
 	[SIGTERM]   = 15,
-	[SIGSTKFLT] = 16,
-	[SIGCHLD]   = 17,
-	[SIGCONT]   = 18,
-	[SIGSTOP]   = 19,
-	[SIGTSTP]   = 20,
+	[SIGURG]    = 16,
+	[SIGSTOP]   = 17,
+	[SIGTSTP]   = 18,
+	[SIGCONT]   = 19,
+	[SIGCHLD]   = 20,
 	[SIGTTIN]   = 21,
 	[SIGTTOU]   = 22,
-	[SIGURG]    = 23,
+	[SIGIO]     = 23,
 	[SIGXCPU]   = 24,
 	[SIGXFSZ]   = 25,
 	[SIGVTALRM] = 26,
 	[SIGPROF]   = 27,
 	[SIGWINCH]  = 28,
-	[SIGPOLL]   = 29,
-	[SIGPWR]    = 30,
-	[SIGSYS]    = 31
+	[SIGINFO]   = 29,
+	[SIGUSR1]    = 30,
+	[SIGUSR2]    = 31
 };
 
 #define sigmap(x) ((x) >= sizeof map ? (x) : map[(x)])
@@ -54,38 +54,38 @@ static const char map[] = {
 #endif
 
 static const char strings[] =
-	"Unknown signal\0"
+	"Signal 0\0"
 	"Hangup\0"
 	"Interrupt\0"
 	"Quit\0"
 	"Illegal instruction\0"
-	"Trace/breakpoint trap\0"
-	"Aborted\0"
-	"Bus error\0"
-	"Arithmetic exception\0"
+	"Trace/BPT trap\0"
+	"Abort trap\0"
+	"EMT trap\0"
+	"Floating point exception\0"
 	"Killed\0"
-	"User defined signal 1\0"
+	"Bus error\0"
 	"Segmentation fault\0"
-	"User defined signal 2\0"
+	"Bad system call\0"
 	"Broken pipe\0"
 	"Alarm clock\0"
 	"Terminated\0"
-	"Stack fault\0"
-	"Child process status\0"
+	"Urgent I/O condition\0"
+	"Suspended (signal)\0"
+	"Suspended\0"
 	"Continued\0"
-	"Stopped (signal)\0"
-	"Stopped\0"
+	"Child exited\0"
 	"Stopped (tty input)\0"
 	"Stopped (tty output)\0"
-	"Urgent I/O condition\0"
-	"CPU time limit exceeded\0"
-	"File size limit exceeded\0"
+	"I/O possible\0"
+	"Cputime limit exceeded\0"
+	"Filesize limit exceeded\0"
 	"Virtual timer expired\0"
 	"Profiling timer expired\0"
-	"Window changed\0"
-	"I/O possible\0"
-	"Power failure\0"
-	"Bad system call\0"
+	"Window size changes\0"
+	"Information request\0"
+	"User defined signal 1\0"
+	"User defined signal 2\0"
 	"RT32"
 	"\0RT33\0RT34\0RT35\0RT36\0RT37\0RT38\0RT39\0RT40"
 	"\0RT41\0RT42\0RT43\0RT44\0RT45\0RT46\0RT47\0RT48"

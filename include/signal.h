@@ -27,19 +27,19 @@ extern "C" {
 
 #include <bits/alltypes.h>
 
-#define SIG_BLOCK     0
-#define SIG_UNBLOCK   1
-#define SIG_SETMASK   2
+#define SIG_BLOCK     1
+#define SIG_UNBLOCK   2
+#define SIG_SETMASK   3
 
-#define SI_ASYNCNL (-60)
-#define SI_TKILL (-6)
-#define SI_SIGIO (-5)
-#define SI_ASYNCIO (-4)
-#define SI_MESGQ (-3)
-#define SI_TIMER (-2)
-#define SI_QUEUE (-1)
-#define SI_USER 0
-#define SI_KERNEL 128
+#define SI_NOINFO    0
+#define SI_USER      0x10001
+#define SI_QUEUE     0x10002
+#define SI_TIMER     0x10003
+#define SI_ASYNCIO   0x10004
+#define SI_MESGQ     0x10005
+#define SI_KERNEL    0x10006
+#define SI_LWP       0x10007
+#define SI_UNDEFINED 0
 
 typedef struct sigaltstack stack_t;
 
@@ -51,10 +51,8 @@ typedef struct sigaltstack stack_t;
  || defined(_XOPEN_SOURCE) || defined(_GNU_SOURCE) \
  || defined(_BSD_SOURCE)
 
-#define SIG_HOLD ((void (*)(int)) 2)
-
-#define FPE_INTDIV 1
-#define FPE_INTOVF 2
+#define FPE_INTOVF 1
+#define FPE_INTDIV 2
 #define FPE_FLTDIV 3
 #define FPE_FLTOVF 4
 #define FPE_FLTUND 5
@@ -104,8 +102,8 @@ typedef struct __siginfo {
          * FreeBSD signal handler.
          */
         int     si_code;                /* signal code */
-        pid_t si_pid;                   /* sending process */
-        uid_t si_uid;                   /* sender's ruid */
+        pid_t   si_pid;                 /* sending process */
+        uid_t   si_uid;                 /* sender's ruid */
         int     si_status;              /* exit value */
         void    *si_addr;               /* faulting instruction */
         union sigval si_value;          /* signal value */
@@ -130,16 +128,22 @@ typedef struct __siginfo {
         } _reason;
 } siginfo_t;
 
+#define si_trapno       _reason._fault._trapno
+#define si_timerid      _reason._timer._timerid
+#define si_overrun      _reason._timer._overrun
+#define si_mqd          _reason._mesgq._mqd
+#define si_band         _reason._poll._band
+
 struct sigaction {
 	union {
-		void (*sa_handler)(int);
+		void (*__sa_handler)(int);
 		void (*__sa_sigaction)(int, struct __siginfo *, void *);
-	} __sa_handler;
+	} __sigaction_u;
 	int sa_flags;
 	sigset_t sa_mask;
 };
-#define sa_handler   __sa_handler.sa_handler
-#define sa_sigaction __sa_handler.sa_sigaction
+#define sa_handler   __sigaction_u.__sa_handler
+#define sa_sigaction __sigaction_u.__sa_sigaction
 
 struct sigevent {
 	int     sigev_notify;           /* Notification type */
@@ -151,13 +155,16 @@ struct sigevent {
 		        void (*_function)(union sigval);
 		        void *_attribute; /* pthread_attr_t * */
 		} _sigev_thread;
+                unsigned short _kevent_flags;
 		long __spare__[8];
 	} _sigev_un;
 };
 
-#define SIGEV_SIGNAL 0
-#define SIGEV_NONE 1
-#define SIGEV_THREAD 2
+#define SIGEV_NONE      0
+#define SIGEV_SIGNAL    1
+#define SIGEV_THREAD    2
+#define SIGEV_KEVENT    3
+#define SIGEV_THREAD_ID 4
 
 int __libc_current_sigrtmin(void);
 int __libc_current_sigrtmax(void);
@@ -211,9 +218,7 @@ void (*sigset(int, void (*)(int)))(int);
 #define POLL_PRI 5
 #define POLL_HUP 6
 #define SS_ONSTACK    1
-#define SS_DISABLE    2
-#define SS_AUTODISARM (1U << 31)
-#define SS_FLAG_BITS SS_AUTODISARM
+#define SS_DISABLE    4
 #endif
 
 #if defined(_BSD_SOURCE) || defined(_GNU_SOURCE)
@@ -235,6 +240,7 @@ int sigandset(sigset_t *, const sigset_t *, const sigset_t *);
 #define SIG_ERR  ((void (*)(int))-1)
 #define SIG_DFL  ((void (*)(int)) 0)
 #define SIG_IGN  ((void (*)(int)) 1)
+#define SIG_HOLD ((void (*)(int)) 3)
 
 typedef int sig_atomic_t;
 
