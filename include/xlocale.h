@@ -1,0 +1,1 @@
+#warning including unsupported xlocale header
