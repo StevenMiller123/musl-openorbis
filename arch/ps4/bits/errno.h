@@ -124,7 +124,6 @@
 #define ESTART            100
 #define ESTOP             101
 #define EINVALID2MB       102
-#define ELAST             102
 
 #define EFPOS             152
 #define EADHOC            160
