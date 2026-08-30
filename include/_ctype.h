@@ -27,8 +27,6 @@ extern "C" {
 #define	_CTYPE_SWM	0xe0000000L		/* Mask for screen width data */
 #define	_CTYPE_SWS	30			/* Bits to shift to get width */
 
-#warning "rune types are not defined yet"
-
 #ifdef __cplusplus
 }
 #endif
