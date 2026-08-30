@@ -25,7 +25,7 @@ int vsscanf(const char *restrict s, const char *restrict fmt, va_list ap)
 	return vfscanf(&f, fmt, ap);
 }
 
-int vsscanf_l(const char *restrict s, locale_t, const char *restrict fmt, va_list ap)
+int vsscanf_l(const char *restrict s, locale_t locale, const char *restrict fmt, va_list ap)
 {
 	return vsscanf(s, fmt, ap);
 }

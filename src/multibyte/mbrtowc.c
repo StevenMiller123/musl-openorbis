@@ -51,7 +51,7 @@ ilseq:
 	return -1;
 }
 
-size_t mbrtowc_l(wchar_t *restrict wc, const char *restrict src, size_t n, mbstate_t *restrict st, locale_t)
+size_t mbrtowc_l(wchar_t *restrict wc, const char *restrict src, size_t n, mbstate_t *restrict st, locale_t locale)
 {
 	return mbrtowc(wc, src, n, st);
 }

@@ -47,7 +47,7 @@ ilseq:
 	return -1;
 }
 
-int mbtowc_l(wchar_t *restrict wc, const char *restrict src, size_t n, locale_t)
+int mbtowc_l(wchar_t *restrict wc, const char *restrict src, size_t n, locale_t locale)
 {
 	return mbtowc(wc, src, n);
 }

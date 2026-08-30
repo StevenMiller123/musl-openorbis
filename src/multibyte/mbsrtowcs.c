@@ -120,7 +120,7 @@ resume:
 	return -1;
 }
 
-size_t mbsrtowcs_l(wchar_t *restrict ws, const char **restrict src, size_t wn, mbstate_t *restrict st, locale_t)
+size_t mbsrtowcs_l(wchar_t *restrict ws, const char **restrict src, size_t wn, mbstate_t *restrict st, locale_t locale)
 {
 	return mbsrtowcs(ws, src, wn, st);
 }

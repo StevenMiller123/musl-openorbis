@@ -12,7 +12,7 @@ int swprintf(wchar_t *restrict s, size_t n, const wchar_t *restrict fmt, ...)
 	return ret;
 }
 
-int swprintf_l(wchar_t *restrict s, size_t n, locale_t, const wchar_t *restrict fmt, ...)
+int swprintf_l(wchar_t *restrict s, size_t n, locale_t locale, const wchar_t *restrict fmt, ...)
 {
 	int ret;
 	va_list ap;

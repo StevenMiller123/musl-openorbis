@@ -8,7 +8,7 @@ int vwscanf(const wchar_t *restrict fmt, va_list ap)
 	return vfwscanf(stdin, fmt, ap);
 }
 
-int vwscanf_l(locale_t, const wchar_t *restrict fmt, va_list ap)
+int vwscanf_l(locale_t locale, const wchar_t *restrict fmt, va_list ap)
 {
 	return vfwscanf(stdin, fmt, ap);
 }

@@ -16,7 +16,7 @@ int atoi(const char *s)
 	return neg ? n : -n;
 }
 
-int atoi_l(const char *s, locale_t)
+int atoi_l(const char *s, locale_t locale)
 {
 	int n=0, neg=0;
 	while (isspace(*s)) s++;

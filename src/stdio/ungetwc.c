@@ -35,7 +35,7 @@ wint_t ungetwc(wint_t c, FILE *f)
 	return c;
 }
 
-wint_t ungetwc_l(wint_t c, FILE *f, locale_t)
+wint_t ungetwc_l(wint_t c, FILE *f, locale_t locale)
 {
 	return ungetwc(c, f);
 }

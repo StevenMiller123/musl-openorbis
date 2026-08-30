@@ -12,7 +12,7 @@ int snprintf(char *restrict s, size_t n, const char *restrict fmt, ...)
 	return ret;
 }
 
-int snprintf_l(char *restrict s, size_t n, locale_t, const char *restrict fmt, ...)
+int snprintf_l(char *restrict s, size_t n, locale_t locale, const char *restrict fmt, ...)
 {
 	int ret;
 	va_list ap;

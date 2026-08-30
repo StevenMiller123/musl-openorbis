@@ -37,7 +37,7 @@ wint_t fputwc(wchar_t c, FILE *f)
 	return c;
 }
 
-wint_t fputwc_l(wchar_t c, FILE *f, locale_t)
+wint_t fputwc_l(wchar_t c, FILE *f, locale_t locale)
 {
 	FLOCK(f);
 	c = __fputwc_unlocked(c, f);

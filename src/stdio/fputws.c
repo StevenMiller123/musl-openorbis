@@ -27,7 +27,7 @@ int fputws(const wchar_t *restrict ws, FILE *restrict f)
 	return l; /* 0 or -1 */
 }
 
-int fputws_l(const wchar_t *restrict ws, FILE *restrict f, locale_t)
+int fputws_l(const wchar_t *restrict ws, FILE *restrict f, locale_t locale)
 {
 	return fputws(ws, f);
 }

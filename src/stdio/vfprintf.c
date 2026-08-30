@@ -696,6 +696,6 @@ int vfprintf(FILE *restrict f, const char *restrict fmt, va_list ap)
 	return ret;
 }
 
-int vfprintf_l(FILE *restrict f, locale_t, const char *restrict fmt, va_list ap) {
+int vfprintf_l(FILE *restrict f, locale_t locale, const char *restrict fmt, va_list ap) {
 	return vfprintf(f, fmt, ap);
 }

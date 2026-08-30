@@ -7,7 +7,7 @@ int vscanf(const char *restrict fmt, va_list ap)
 	return vfscanf(stdin, fmt, ap);
 }
 
-int vscanf_l(locale_t, const char *restrict fmt, va_list ap)
+int vscanf_l(locale_t locale, const char *restrict fmt, va_list ap)
 {
 	return vfscanf(stdin, fmt, ap);
 }

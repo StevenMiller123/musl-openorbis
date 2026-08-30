@@ -7,7 +7,7 @@ wint_t putwchar(wchar_t c)
 	return fputwc(c, stdout);
 }
 
-wint_t putwchar_l(wchar_t c, locale_t)
+wint_t putwchar_l(wchar_t c, locale_t locale)
 {
 	return fputwc(c, stdout);
 }

@@ -17,7 +17,7 @@ long atol(const char *s)
 	return neg ? n : -n;
 }
 
-long atol_l(const char *s, locale_t)
+long atol_l(const char *s, locale_t locale)
 {
 	long n=0;
 	int neg=0;

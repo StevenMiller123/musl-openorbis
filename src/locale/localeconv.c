@@ -34,7 +34,7 @@ struct lconv *localeconv(void)
 	return (void *)&posix_lconv;
 }
 
-struct lconv *localeconv_l(locale_t)
+struct lconv *localeconv_l(locale_t locale)
 {
 	return (void *)&posix_lconv;
 }

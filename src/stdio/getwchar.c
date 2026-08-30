@@ -7,7 +7,7 @@ wint_t getwchar(void)
 	return fgetwc(stdin);
 }
 
-wint_t getwchar_l(locale_t)
+wint_t getwchar_l(locale_t locale)
 {
 	return fgetwc(stdin);
 }

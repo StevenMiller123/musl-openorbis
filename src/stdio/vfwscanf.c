@@ -330,7 +330,7 @@ match_fail:
 	return matches;
 }
 
-int vfwscanf_l(FILE *restrict f, locale_t, const wchar_t *restrict fmt, va_list ap)
+int vfwscanf_l(FILE *restrict f, locale_t locale, const wchar_t *restrict fmt, va_list ap)
 {
 	return vfwscanf(f, fmt, ap);
 }

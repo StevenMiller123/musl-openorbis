@@ -36,7 +36,7 @@ int vswscanf(const wchar_t *restrict s, const wchar_t *restrict fmt, va_list ap)
 	return vfwscanf(&f, fmt, ap);
 }
 
-int vswscanf_l(const wchar_t *restrict s, locale_t, const wchar_t *restrict fmt, va_list ap)
+int vswscanf_l(const wchar_t *restrict s, locale_t locale, const wchar_t *restrict fmt, va_list ap)
 {
 	unsigned char buf[256];
 	FILE f = {

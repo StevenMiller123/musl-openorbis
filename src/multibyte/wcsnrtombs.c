@@ -43,7 +43,7 @@ size_t wcsnrtombs(char *restrict dst, const wchar_t **restrict wcs, size_t wn, s
 	return cnt;
 }
 
-size_t wcsnrtombs_l(char *restrict dst, const wchar_t **restrict wcs, size_t wn, size_t n, mbstate_t *restrict st, locale_t)
+size_t wcsnrtombs_l(char *restrict dst, const wchar_t **restrict wcs, size_t wn, size_t n, mbstate_t *restrict st, locale_t locale)
 {
 	return wcsnrtombs(dst, wcs, wn, n, st);
 }

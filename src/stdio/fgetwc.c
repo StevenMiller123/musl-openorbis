@@ -65,7 +65,7 @@ wint_t fgetwc(FILE *f)
 	return c;
 }
 
-wint_t fgetwc_l(FILE *f, locale_t)
+wint_t fgetwc_l(FILE *f, locale_t locale)
 {
 	wint_t c;
 	FLOCK(f);

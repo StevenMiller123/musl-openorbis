@@ -54,7 +54,7 @@ float wcstof(const wchar_t *restrict s, wchar_t **restrict p)
 	return wcstox(s, p, 0);
 }
 
-float wcstof_l(const wchar_t *restrict s, wchar_t **restrict p, locale_t)
+float wcstof_l(const wchar_t *restrict s, wchar_t **restrict p, locale_t locale)
 {
 	return wcstox(s, p, 0);
 }
@@ -64,7 +64,7 @@ double wcstod(const wchar_t *restrict s, wchar_t **restrict p)
 	return wcstox(s, p, 1);
 }
 
-double wcstod_l(const wchar_t *restrict s, wchar_t **restrict p, locale_t)
+double wcstod_l(const wchar_t *restrict s, wchar_t **restrict p, locale_t locale)
 {
 	return wcstox(s, p, 1);
 }
@@ -74,7 +74,7 @@ long double wcstold(const wchar_t *restrict s, wchar_t **restrict p)
 	return wcstox(s, p, 2);
 }
 
-long double wcstold_l(const wchar_t *restrict s, wchar_t **restrict p, locale_t)
+long double wcstold_l(const wchar_t *restrict s, wchar_t **restrict p, locale_t locale)
 {
 	return wcstox(s, p, 2);
 }

@@ -6,7 +6,7 @@ double atof(const char *s)
 	return strtod(s, 0);
 }
 
-double atof_l(const char *s, locale_t)
+double atof_l(const char *s, locale_t locale)
 {
 	return strtod(s, 0);
 }

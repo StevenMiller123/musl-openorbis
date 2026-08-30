@@ -12,7 +12,7 @@ int swscanf(const wchar_t *restrict s, const wchar_t *restrict fmt, ...)
 	return ret;
 }
 
-int swscanf_l(const wchar_t *restrict s, locale_t, const wchar_t *restrict fmt, ...)
+int swscanf_l(const wchar_t *restrict s, locale_t locale, const wchar_t *restrict fmt, ...)
 {
 	int ret;
 	va_list ap;

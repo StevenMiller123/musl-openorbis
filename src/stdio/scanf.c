@@ -12,7 +12,7 @@ int scanf(const char *restrict fmt, ...)
 	return ret;
 }
 
-int scanf_l(locale_t, const char *restrict fmt, ...)
+int scanf_l(locale_t locale, const char *restrict fmt, ...)
 {
 	int ret;
 	va_list ap;

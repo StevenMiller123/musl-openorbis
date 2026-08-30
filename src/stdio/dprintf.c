@@ -12,7 +12,7 @@ int dprintf(int fd, const char *restrict fmt, ...)
 	return ret;
 }
 
-int dprintf_l(int fd, locale_t, const char *restrict fmt, ...)
+int dprintf_l(int fd, locale_t locale, const char *restrict fmt, ...)
 {
 	int ret;
 	va_list ap;

@@ -12,7 +12,7 @@ int sprintf(char *restrict s, const char *restrict fmt, ...)
 	return ret;
 }
 
-int sprintf_l(char *restrict s, locale_t, const char *restrict fmt, ...)
+int sprintf_l(char *restrict s, locale_t locale, const char *restrict fmt, ...)
 {
 	int ret;
 	va_list ap;

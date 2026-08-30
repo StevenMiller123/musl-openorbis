@@ -206,7 +206,7 @@ char *strptime(const char *restrict s, const char *restrict f, struct tm *restri
 	return (char *)s;
 }
 
-char *strptime_l(const char *restrict s, const char *restrict f, struct tm *restrict tm, locale_t)
+char *strptime_l(const char *restrict s, const char *restrict f, struct tm *restrict tm, locale_t locale)
 {
 	return strptime(s, f, tm);
 }

@@ -15,7 +15,7 @@ int vasprintf(char **s, const char *fmt, va_list ap)
 	return vsnprintf(*s, l+1U, fmt, ap);
 }
 
-int vasprintf_l(char **s, locale_t, const char *fmt, va_list ap)
+int vasprintf_l(char **s, locale_t locale, const char *fmt, va_list ap)
 {
 	return vasprintf(s, fmt, ap);
 }

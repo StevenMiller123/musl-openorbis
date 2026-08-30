@@ -13,7 +13,7 @@ int asprintf(char **s, const char *fmt, ...)
 	return ret;
 }
 
-int asprintf_l(char **s, locale_t, const char *fmt, ...)
+int asprintf_l(char **s, locale_t locale, const char *fmt, ...)
 {
 	int ret;
 	va_list ap;

@@ -338,7 +338,7 @@ match_fail:
 	return matches;
 }
 
-int vfscanf_l(FILE *restrict f, locale_t, const char *restrict fmt, va_list ap)
+int vfscanf_l(FILE *restrict f, locale_t locale, const char *restrict fmt, va_list ap)
 {
 	return vfscanf(f, fmt, ap);
 }

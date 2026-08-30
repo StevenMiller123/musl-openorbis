@@ -9,7 +9,7 @@ char *strcasestr(const char *h, const char *n)
 	return 0;
 }
 
-char *strcasestr_l(const char *h, const char *n, locale_t)
+char *strcasestr_l(const char *h, const char *n, locale_t locale)
 {
 	return strcasestr(h, n);
 }

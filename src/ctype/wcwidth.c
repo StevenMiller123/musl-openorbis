@@ -29,7 +29,7 @@ int wcwidth(wchar_t wc)
 	return 1;
 }
 
-int wcwidth_l(wchar_t wc, locale_t)
+int wcwidth_l(wchar_t wc, locale_t locale)
 {
 	if (wc < 0xffU)
 		return (wc+1 & 0x7f) >= 0x21 ? 1 : wc ? -1 : 0;

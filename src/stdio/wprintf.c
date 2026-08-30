@@ -13,7 +13,7 @@ int wprintf(const wchar_t *restrict fmt, ...)
 	return ret;
 }
 
-int wprintf_l(locale_t, const wchar_t *restrict fmt, ...)
+int wprintf_l(locale_t locale, const wchar_t *restrict fmt, ...)
 {
 	int ret;
 	va_list ap;

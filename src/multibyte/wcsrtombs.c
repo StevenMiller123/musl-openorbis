@@ -55,7 +55,7 @@ size_t wcsrtombs(char *restrict s, const wchar_t **restrict ws, size_t n, mbstat
 	return N;
 }
 
-size_t wcsrtombs_l(char *restrict s, const wchar_t **restrict ws, size_t n, mbstate_t *restrict st, locale_t)
+size_t wcsrtombs_l(char *restrict s, const wchar_t **restrict ws, size_t n, mbstate_t *restrict st, locale_t locale)
 {
 	return wcsrtombs(s, ws, n, st);
 }

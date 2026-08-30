@@ -7,7 +7,7 @@ wint_t getwc(FILE *f)
 	return fgetwc(f);
 }
 
-wint_t getwc_l(FILE *f, locale_t)
+wint_t getwc_l(FILE *f, locale_t locale)
 {
 	return fgetwc(f);
 }

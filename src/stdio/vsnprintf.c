@@ -55,7 +55,7 @@ int vsnprintf(char *restrict s, size_t n, const char *restrict fmt, va_list ap)
 	return vfprintf(&f, fmt, ap);
 }
 
-int vsnprintf_l(char *restrict s, size_t n, locale_t, const char *restrict fmt, va_list ap)
+int vsnprintf_l(char *restrict s, size_t n, locale_t locale, const char *restrict fmt, va_list ap)
 {
 	return vsnprintf(s, n, fmt, ap);
 }

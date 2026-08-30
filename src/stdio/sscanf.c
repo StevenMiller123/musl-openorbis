@@ -12,7 +12,7 @@ int sscanf(const char *restrict s, const char *restrict fmt, ...)
 	return ret;
 }
 
-int sscanf_l(const char *restrict s, locale_t, const char *restrict fmt, ...)
+int sscanf_l(const char *restrict s, locale_t locale, const char *restrict fmt, ...)
 {
 	int ret;
 	va_list ap;

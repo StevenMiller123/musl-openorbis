@@ -60,7 +60,7 @@ int vswprintf(wchar_t *restrict s, size_t n, const wchar_t *restrict fmt, va_lis
 	return r>=n ? -1 : r;
 }
 
-int vswprintf_l(wchar_t *restrict s, size_t n, locale_t, const wchar_t *restrict fmt, va_list ap)
+int vswprintf_l(wchar_t *restrict s, size_t n, locale_t locale, const wchar_t *restrict fmt, va_list ap)
 {
 	return vswprintf(s, n, fmt, ap);
 }

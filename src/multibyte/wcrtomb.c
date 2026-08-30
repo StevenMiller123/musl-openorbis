@@ -37,7 +37,7 @@ size_t wcrtomb(char *restrict s, wchar_t wc, mbstate_t *restrict st)
 	return -1;
 }
 
-size_t wcrtomb_l(char *restrict s, wchar_t wc, mbstate_t *restrict st, locale_t)
+size_t wcrtomb_l(char *restrict s, wchar_t wc, mbstate_t *restrict st, locale_t locale)
 {
 	return wcrtomb(s, wc, st);
 }

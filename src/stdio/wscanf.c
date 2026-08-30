@@ -13,7 +13,7 @@ int wscanf(const wchar_t *restrict fmt, ...)
 	return ret;
 }
 
-int wscanf_l(locale_t, const wchar_t *restrict fmt, ...)
+int wscanf_l(locale_t locale, const wchar_t *restrict fmt, ...)
 {
 	int ret;
 	va_list ap;

@@ -11,7 +11,7 @@ int vdprintf(int fd, const char *restrict fmt, va_list ap)
 	return vfprintf(&f, fmt, ap);
 }
 
-int vdprintf_l(int fd, locale_t, const char *restrict fmt, va_list ap)
+int vdprintf_l(int fd, locale_t locale, const char *restrict fmt, va_list ap)
 {
 	return vdprintf(fd, fmt, ap);
 }

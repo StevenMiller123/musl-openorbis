@@ -13,7 +13,7 @@ int fwscanf(FILE *restrict f, const wchar_t *restrict fmt, ...)
 	return ret;
 }
 
-int fwscanf_l(FILE *restrict f, locale_t, const wchar_t *restrict fmt, ...)
+int fwscanf_l(FILE *restrict f, locale_t locale, const wchar_t *restrict fmt, ...)
 {
 	int ret;
 	va_list ap;

@@ -31,7 +31,7 @@ wchar_t *fgetws(wchar_t *restrict s, int n, FILE *restrict f)
 	return (p == s) ? NULL : s;
 }
 
-wchar_t *fgetws_l(wchar_t *restrict s, int n, FILE *restrict f, locale_t)
+wchar_t *fgetws_l(wchar_t *restrict s, int n, FILE *restrict f, locale_t locale)
 {
 	return fgetws(s, n, f);
 }

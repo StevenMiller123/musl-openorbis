@@ -7,7 +7,7 @@ wint_t putwc(wchar_t c, FILE *f)
 	return fputwc(c, f);
 }
 
-wint_t putwc_l(wchar_t c, FILE *f, locale_t)
+wint_t putwc_l(wchar_t c, FILE *f, locale_t locale)
 {
 	return fputwc(c, f);
 }
