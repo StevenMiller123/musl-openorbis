@@ -8,7 +8,7 @@ int wctomb(char *s, wchar_t wc)
 	return wcrtomb(s, wc, 0);
 }
 
-int wctomb(char *s, wchar_t wc, locale_t)
+int wctomb_l(char *s, wchar_t wc, locale_t)
 {
 	if (!s) return 0;
 	return wcrtomb(s, wc, 0);
