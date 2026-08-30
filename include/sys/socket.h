@@ -81,15 +81,15 @@ struct linger {
 #define SHUT_RDWR 2
 
 #ifndef SOCK_STREAM
-#define SOCK_STREAM    1
-#define SOCK_DGRAM     2
+#define SOCK_STREAM     1
+#define SOCK_DGRAM      2
 #endif
 
-#define SOCK_RAW       3
-#define SOCK_RDM       4
-#define SOCK_SEQPACKET 5
-#define SOCK_DCCP      6
-#define SOCK_PACKET    10
+#define SOCK_RAW        3
+#define SOCK_RDM        4
+#define SOCK_SEQPACKET  5
+#define SOCK_DGRAM_P2P  6
+#define SOCK_STREAM_P2P 10
 
 #ifndef SOCK_CLOEXEC
 #define SOCK_CLOEXEC   02000000
