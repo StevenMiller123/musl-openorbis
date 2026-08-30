@@ -8,6 +8,7 @@
 #include <endian.h>
 #include <errno.h>
 #include "lookup.h"
+#include <stdio.h>
 
 int getaddrinfo(const char *restrict host, const char *restrict serv, const struct addrinfo *restrict hint, struct addrinfo **restrict res)
 {
@@ -78,6 +79,7 @@ int getaddrinfo(const char *restrict host, const char *restrict serv, const stru
 			case ENETUNREACH:
 				break;
 			default:
+				printf("error = {}", errno);
 				return EAI_SYSTEM;
 			}
 			if (family == tf[i]) return EAI_NONAME;
