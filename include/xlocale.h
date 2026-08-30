@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+#define __NEED_locale_t
+
 #include <locale.h>
 #include <bits/alltypes.h>
 
