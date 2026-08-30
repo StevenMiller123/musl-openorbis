@@ -13,9 +13,7 @@
 #define	ENOMEM		12		/* Cannot allocate memory */
 #define	EACCES		13		/* Permission denied */
 #define	EFAULT		14		/* Bad address */
-#ifndef _POSIX_SOURCE
 #define	ENOTBLK		15		/* Block device required */
-#endif
 #define	EBUSY		16		/* Device busy */
 #define	EEXIST		17		/* File exists */
 #define	EXDEV		18		/* Cross-device link */
@@ -26,9 +24,7 @@
 #define	ENFILE		23		/* Too many open files in system */
 #define	EMFILE		24		/* Too many open files */
 #define	ENOTTY		25		/* Inappropriate ioctl for device */
-#ifndef _POSIX_SOURCE
 #define	ETXTBSY		26		/* Text file busy */
-#endif
 #define	EFBIG		27		/* File too large */
 #define	ENOSPC		28		/* No space left on device */
 #define	ESPIPE		29		/* Illegal seek */
@@ -42,7 +38,6 @@
 
 /* non-blocking and interrupt i/o */
 #define	EAGAIN		35		/* Resource temporarily unavailable */
-#ifndef _POSIX_SOURCE
 #define	EWOULDBLOCK	EAGAIN		/* Operation would block */
 #define	EINPROGRESS	36		/* Operation now in progress */
 #define	EALREADY	37		/* Operation already in progress */
@@ -77,18 +72,14 @@
 #define	ECONNREFUSED	61		/* Connection refused */
 
 #define	ELOOP		62		/* Too many levels of symbolic links */
-#endif /* _POSIX_SOURCE */
 #define	ENAMETOOLONG	63		/* File name too long */
 
 /* should be rearranged */
-#ifndef _POSIX_SOURCE
 #define	EHOSTDOWN	64		/* Host is down */
 #define	EHOSTUNREACH	65		/* No route to host */
-#endif /* _POSIX_SOURCE */
 #define	ENOTEMPTY	66		/* Directory not empty */
 
 /* quotas & mush */
-#ifndef _POSIX_SOURCE
 #define	EPROCLIM	67		/* Too many processes */
 #define	EUSERS		68		/* Too many users */
 #define	EDQUOT		69		/* Disc quota exceeded */
@@ -101,12 +92,10 @@
 #define	EPROGUNAVAIL	74		/* RPC prog. not avail */
 #define	EPROGMISMATCH	75		/* Program version wrong */
 #define	EPROCUNAVAIL	76		/* Bad procedure for program */
-#endif /* _POSIX_SOURCE */
 
 #define	ENOLCK		77		/* No locks available */
 #define	ENOSYS		78		/* Function not implemented */
 
-#ifndef _POSIX_SOURCE
 #define	EFTYPE		79		/* Inappropriate file type or format */
 #define	EAUTH		80		/* Authentication error */
 #define	ENEEDAUTH	81		/* Need authenticator */
@@ -118,25 +107,40 @@
 #define	ENOATTR		87		/* Attribute not found */
 
 #define	EDOOFUS		88		/* Programming error */
-#endif /* _POSIX_SOURCE */
 
 #define	EBADMSG		89		/* Bad message */
 #define	EMULTIHOP	90		/* Multihop attempted */
 #define	ENOLINK		91		/* Link has been severed */
 #define	EPROTO		92		/* Protocol error */
 
-#ifndef _POSIX_SOURCE
 #define	ENOTCAPABLE	93		/* Capabilities insufficient */
 #define	ECAPMODE	94		/* Not permitted in capability mode */
 
-/* These 3 are not yet present in FreeBSD version 9, but declaring them won't hurt, and will make for less patches in consumers. */
-#define	ENOTRECOVERABLE	95		/* State not recoverable */
-#define	EOWNERDEAD	96		/* Previous owner died */
-#define	EINTEGRITY	97		/* Integrity check failed */
+#define ENOBLK            95
+#define EICV              96
+#define ENOPLAYGOENT      97
+#define EREVOKE           98
+#define ESDKVERSION       99
+#define ESTART            100
+#define ESTOP             101
+#define EINVALID2MB       102
+#define ELAST             102
 
-#endif /* _POSIX_SOURCE */
+#define EFPOS             152
+#define EADHOC            160
+#define EINACTIVEDISABLED 163
+#define ENETNODATA        164
+#define ENETDESC          165
+#define ENETDESCTIMEDOUT  166
+#define ENETINTR          167
+#define ERETURN           205
 
-#ifndef _POSIX_SOURCE
-#define	ELAST		97		/* Must be equal largest errno */
-#endif /* _POSIX_SOURCE */
+#define ENODATA           1040
+#define ENOSR             1050
+#define ENOSTR            1051
+#define ENOTRECOVERABLE   1056
+#define EOTHER            1062
+#define EOWNERDEAD        1064
+#define ETIME             1074
 
+#define	ELAST		      1074
