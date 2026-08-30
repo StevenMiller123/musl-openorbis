@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <xlocale.h>
 
 int vasprintf(char **s, const char *fmt, va_list ap)
 {
@@ -12,4 +13,9 @@ int vasprintf(char **s, const char *fmt, va_list ap)
 
 	if (l<0 || !(*s=malloc(l+1U))) return -1;
 	return vsnprintf(*s, l+1U, fmt, ap);
+}
+
+int vasprintf_l(char **s, locale_t, const char *fmt, va_list ap)
+{
+	return vasprintf(s, fmt, ap);
 }

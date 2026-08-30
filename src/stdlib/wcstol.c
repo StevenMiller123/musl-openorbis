@@ -5,6 +5,7 @@
 #include <limits.h>
 #include <wctype.h>
 #include <wchar.h>
+#include <xlocale.h>
 
 /* This read function heavily cheats. It knows:
  *  (1) len will always be 1
@@ -55,7 +56,17 @@ unsigned long long wcstoull(const wchar_t *restrict s, wchar_t **restrict p, int
 	return wcstox(s, p, base, ULLONG_MAX);
 }
 
+unsigned long long wcstoull_l(const wchar_t *restrict s, wchar_t **restrict p, int base, locale_t)
+{
+	return wcstox(s, p, base, ULLONG_MAX);
+}
+
 long long wcstoll(const wchar_t *restrict s, wchar_t **restrict p, int base)
+{
+	return wcstox(s, p, base, LLONG_MIN);
+}
+
+long long wcstoll_l(const wchar_t *restrict s, wchar_t **restrict p, int base, locale_t)
 {
 	return wcstox(s, p, base, LLONG_MIN);
 }
@@ -65,7 +76,17 @@ unsigned long wcstoul(const wchar_t *restrict s, wchar_t **restrict p, int base)
 	return wcstox(s, p, base, ULONG_MAX);
 }
 
+unsigned long wcstoul_l(const wchar_t *restrict s, wchar_t **restrict p, int base, locale_t)
+{
+	return wcstox(s, p, base, ULONG_MAX);
+}
+
 long wcstol(const wchar_t *restrict s, wchar_t **restrict p, int base)
+{
+	return wcstox(s, p, base, 0UL+LONG_MIN);
+}
+
+long wcstol_l(const wchar_t *restrict s, wchar_t **restrict p, int base, locale_t)
 {
 	return wcstox(s, p, base, 0UL+LONG_MIN);
 }
@@ -75,7 +96,17 @@ intmax_t wcstoimax(const wchar_t *restrict s, wchar_t **restrict p, int base)
 	return wcstoll(s, p, base);
 }
 
+intmax_t wcstoimax_l(const wchar_t *restrict s, wchar_t **restrict p, int base, locale_t)
+{
+	return wcstoll(s, p, base);
+}
+
 uintmax_t wcstoumax(const wchar_t *restrict s, wchar_t **restrict p, int base)
+{
+	return wcstoull(s, p, base);
+}
+
+uintmax_t wcstoumax_l(const wchar_t *restrict s, wchar_t **restrict p, int base, locale_t)
 {
 	return wcstoull(s, p, base);
 }

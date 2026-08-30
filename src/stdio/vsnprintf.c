@@ -3,6 +3,7 @@
 #include <string.h>
 #include <errno.h>
 #include <stdint.h>
+#include <xlocale.h>
 
 struct cookie {
 	char *s;
@@ -52,4 +53,9 @@ int vsnprintf(char *restrict s, size_t n, const char *restrict fmt, va_list ap)
 
 	*c.s = 0;
 	return vfprintf(&f, fmt, ap);
+}
+
+int vsnprintf_l(char *restrict s, size_t n, locale_t, const char *restrict fmt, va_list ap)
+{
+	return vsnprintf(s, n, fmt, ap);
 }

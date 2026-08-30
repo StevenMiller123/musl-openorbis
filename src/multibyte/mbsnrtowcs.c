@@ -1,4 +1,5 @@
 #include <wchar.h>
+#include <xlocale.h>
 
 size_t mbsnrtowcs(wchar_t *restrict wcs, const char **restrict src, size_t n, size_t wn, mbstate_t *restrict st)
 {
@@ -52,4 +53,9 @@ size_t mbsnrtowcs(wchar_t *restrict wcs, const char **restrict src, size_t n, si
 	}
 	if (wcs) *src = s;
 	return cnt;
+}
+
+size_t mbsnrtowcs_l(wchar_t *restrict wcs, const char **restrict src, size_t n, size_t wn, mbstate_t *restrict st, locale_t)
+{
+	return mbsnrtowcs(wcs, src, n, wn, st);
 }

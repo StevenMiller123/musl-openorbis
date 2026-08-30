@@ -4,6 +4,7 @@
 #include <limits.h>
 #include <ctype.h>
 #include <string.h>
+#include <xlocale.h>
 
 wint_t ungetwc(wint_t c, FILE *f)
 {
@@ -32,4 +33,9 @@ wint_t ungetwc(wint_t c, FILE *f)
 	FUNLOCK(f);
 	*ploc = loc;
 	return c;
+}
+
+wint_t ungetwc_l(wint_t c, FILE *f, locale_t)
+{
+	return ungetwc(c, f);
 }

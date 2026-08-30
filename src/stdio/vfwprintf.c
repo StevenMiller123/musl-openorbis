@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <wchar.h>
 #include <inttypes.h>
+#include <xlocale.h>
 
 /* Convenient bit representation for modifier flags, which all fall
  * within 31 codepoints of the space character. */
@@ -362,4 +363,9 @@ int vfwprintf(FILE *restrict f, const wchar_t *restrict fmt, va_list ap)
 	FUNLOCK(f);
 	va_end(ap2);
 	return ret;
+}
+
+int vfwprintf_l(FILE *restrict f, locale_t, const wchar_t *restrict fmt, va_list ap)
+{
+	return vfwprintf(f, fmt, ap);
 }

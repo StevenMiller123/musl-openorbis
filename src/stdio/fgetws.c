@@ -1,6 +1,7 @@
 #include "stdio_impl.h"
 #include <wchar.h>
 #include <errno.h>
+#include <xlocale.h>
 
 wint_t __fgetwc_unlocked(FILE *);
 
@@ -28,6 +29,11 @@ wchar_t *fgetws(wchar_t *restrict s, int n, FILE *restrict f)
 	FUNLOCK(f);
 
 	return (p == s) ? NULL : s;
+}
+
+wchar_t *fgetws_l(wchar_t *restrict s, int n, FILE *restrict f, locale_t)
+{
+	return fgetws(s, n, f);
 }
 
 weak_alias(fgetws, fgetws_unlocked);

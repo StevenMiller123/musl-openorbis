@@ -2,6 +2,7 @@
 #include <wchar.h>
 #include <errno.h>
 #include "internal.h"
+#include <xlocale.h>
 
 int mbtowc(wchar_t *restrict wc, const char *restrict src, size_t n)
 {
@@ -44,4 +45,9 @@ int mbtowc(wchar_t *restrict wc, const char *restrict src, size_t n)
 ilseq:
 	errno = EILSEQ;
 	return -1;
+}
+
+int mbtowc_l(wchar_t *restrict wc, const char *restrict src, size_t n, locale_t)
+{
+	return mbtowc(wc, src, n);
 }

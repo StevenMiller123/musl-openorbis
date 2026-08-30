@@ -2,6 +2,7 @@
 #include <wchar.h>
 #include <errno.h>
 #include "internal.h"
+#include <xlocale.h>
 
 size_t mbrtowc(wchar_t *restrict wc, const char *restrict src, size_t n, mbstate_t *restrict st)
 {
@@ -48,4 +49,9 @@ ilseq:
 	*(unsigned *)st = 0;
 	errno = EILSEQ;
 	return -1;
+}
+
+size_t mbrtowc_l(wchar_t *restrict wc, const char *restrict src, size_t n, mbstate_t *restrict st, locale_t)
+{
+	return mbrtowc(wc, src, n, st);
 }

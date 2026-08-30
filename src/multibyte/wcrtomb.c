@@ -2,6 +2,7 @@
 #include <wchar.h>
 #include <errno.h>
 #include "internal.h"
+#include <xlocale.h>
 
 size_t wcrtomb(char *restrict s, wchar_t wc, mbstate_t *restrict st)
 {
@@ -34,4 +35,9 @@ size_t wcrtomb(char *restrict s, wchar_t wc, mbstate_t *restrict st)
 	}
 	errno = EILSEQ;
 	return -1;
+}
+
+size_t wcrtomb_l(char *restrict s, wchar_t wc, mbstate_t *restrict st, locale_t)
+{
+	return wcrtomb(s, wc, st);
 }

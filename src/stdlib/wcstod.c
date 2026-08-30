@@ -3,6 +3,7 @@
 #include "stdio_impl.h"
 #include <wchar.h>
 #include <wctype.h>
+#include <xlocale.h>
 
 /* This read function heavily cheats. It knows:
  *  (1) len will always be 1
@@ -53,12 +54,27 @@ float wcstof(const wchar_t *restrict s, wchar_t **restrict p)
 	return wcstox(s, p, 0);
 }
 
+float wcstof_l(const wchar_t *restrict s, wchar_t **restrict p, locale_t)
+{
+	return wcstox(s, p, 0);
+}
+
 double wcstod(const wchar_t *restrict s, wchar_t **restrict p)
 {
 	return wcstox(s, p, 1);
 }
 
+double wcstod_l(const wchar_t *restrict s, wchar_t **restrict p, locale_t)
+{
+	return wcstox(s, p, 1);
+}
+
 long double wcstold(const wchar_t *restrict s, wchar_t **restrict p)
+{
+	return wcstox(s, p, 2);
+}
+
+long double wcstold_l(const wchar_t *restrict s, wchar_t **restrict p, locale_t)
 {
 	return wcstox(s, p, 2);
 }

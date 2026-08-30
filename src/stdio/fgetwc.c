@@ -2,6 +2,7 @@
 #include "locale_impl.h"
 #include <wchar.h>
 #include <errno.h>
+#include <xlocale.h>
 
 static wint_t __fgetwc_unlocked_internal(FILE *f)
 {
@@ -56,6 +57,15 @@ wint_t __fgetwc_unlocked(FILE *f)
 }
 
 wint_t fgetwc(FILE *f)
+{
+	wint_t c;
+	FLOCK(f);
+	c = __fgetwc_unlocked(f);
+	FUNLOCK(f);
+	return c;
+}
+
+wint_t fgetwc_l(FILE *f, locale_t)
 {
 	wint_t c;
 	FLOCK(f);

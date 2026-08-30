@@ -11,6 +11,7 @@
 #include "shgetc.h"
 #include "intscan.h"
 #include "floatscan.h"
+#include <xlocale.h>
 
 #define SIZE_hh -2
 #define SIZE_h  -1
@@ -327,6 +328,11 @@ match_fail:
 	}
 	FUNLOCK(f);
 	return matches;
+}
+
+int vfwscanf_l(FILE *restrict f, locale_t, const wchar_t *restrict fmt, va_list ap)
+{
+	return vfwscanf(f, fmt, ap);
 }
 
 weak_alias(vfwscanf,__isoc99_vfwscanf);

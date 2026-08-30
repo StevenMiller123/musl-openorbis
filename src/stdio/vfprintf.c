@@ -10,6 +10,7 @@
 #include <inttypes.h>
 #include <math.h>
 #include <float.h>
+#include <xlocale.h>
 
 /* Some useful macros */
 
@@ -693,4 +694,8 @@ int vfprintf(FILE *restrict f, const char *restrict fmt, va_list ap)
 	FUNLOCK(f);
 	va_end(ap2);
 	return ret;
+}
+
+int vfprintf_l(FILE *restrict f, locale_t, const char *restrict fmt, va_list ap) {
+	return vfprintf(f, fmt, ap);
 }

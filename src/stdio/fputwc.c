@@ -3,6 +3,7 @@
 #include <wchar.h>
 #include <limits.h>
 #include <ctype.h>
+#include <xlocale.h>
 
 wint_t __fputwc_unlocked(wchar_t c, FILE *f)
 {
@@ -29,6 +30,14 @@ wint_t __fputwc_unlocked(wchar_t c, FILE *f)
 }
 
 wint_t fputwc(wchar_t c, FILE *f)
+{
+	FLOCK(f);
+	c = __fputwc_unlocked(c, f);
+	FUNLOCK(f);
+	return c;
+}
+
+wint_t fputwc_l(wchar_t c, FILE *f, locale_t)
 {
 	FLOCK(f);
 	c = __fputwc_unlocked(c, f);

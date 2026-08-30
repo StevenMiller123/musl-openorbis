@@ -4,6 +4,7 @@
 #include <inttypes.h>
 #include <limits.h>
 #include <ctype.h>
+#include <xlocale.h>
 
 static unsigned long long strtox(const char *s, char **p, int base, unsigned long long lim)
 {
@@ -23,7 +24,17 @@ unsigned long long strtoull(const char *restrict s, char **restrict p, int base)
 	return strtox(s, p, base, ULLONG_MAX);
 }
 
+unsigned long long strtoull_l(const char *restrict s, char **restrict p, int base, locale_t) 
+{
+	return strtox(s, p, base, ULLONG_MAX);
+}
+
 long long strtoll(const char *restrict s, char **restrict p, int base)
+{
+	return strtox(s, p, base, LLONG_MIN);
+}
+
+long long strtoll_l(const char *restrict s, char **restrict p, int base, locale_t)
 {
 	return strtox(s, p, base, LLONG_MIN);
 }
@@ -33,7 +44,17 @@ unsigned long strtoul(const char *restrict s, char **restrict p, int base)
 	return strtox(s, p, base, ULONG_MAX);
 }
 
+unsigned long strtoul_l(const char *restrict s, char **restrict p, int base, locale_t)
+{
+	return strtox(s, p, base, ULONG_MAX);
+}
+
 long strtol(const char *restrict s, char **restrict p, int base)
+{
+	return strtox(s, p, base, 0UL+LONG_MIN);
+}
+
+long strtol_l(const char *restrict s, char **restrict p, int base, locale_t)
 {
 	return strtox(s, p, base, 0UL+LONG_MIN);
 }
@@ -43,7 +64,17 @@ intmax_t strtoimax(const char *restrict s, char **restrict p, int base)
 	return strtoll(s, p, base);
 }
 
+intmax_t strtoimax_l(const char *restrict s, char **restrict p, int base, locale_t)
+{
+	return strtoll(s, p, base);
+}
+
 uintmax_t strtoumax(const char *restrict s, char **restrict p, int base)
+{
+	return strtoull(s, p, base);
+}
+
+uintmax_t strtoumax_l(const char *restrict s, char **restrict p, int base, locale_t)
 {
 	return strtoull(s, p, base);
 }

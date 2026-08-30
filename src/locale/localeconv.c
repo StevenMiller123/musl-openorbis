@@ -1,5 +1,6 @@
 #include <locale.h>
 #include <limits.h>
+#include <xlocale.h>
 
 static const struct lconv posix_lconv = {
 	.decimal_point = ".",
@@ -29,6 +30,11 @@ static const struct lconv posix_lconv = {
 };
 
 struct lconv *localeconv(void)
+{
+	return (void *)&posix_lconv;
+}
+
+struct lconv *localeconv_l(locale_t)
 {
 	return (void *)&posix_lconv;
 }

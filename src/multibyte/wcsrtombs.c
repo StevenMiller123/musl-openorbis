@@ -1,4 +1,5 @@
 #include <wchar.h>
+#include <xlocale.h>
 
 size_t wcsrtombs(char *restrict s, const wchar_t **restrict ws, size_t n, mbstate_t *restrict st)
 {
@@ -52,4 +53,9 @@ size_t wcsrtombs(char *restrict s, const wchar_t **restrict ws, size_t n, mbstat
 		(*ws)++;
 	}
 	return N;
+}
+
+size_t wcsrtombs_l(char *restrict s, const wchar_t **restrict ws, size_t n, mbstate_t *restrict st, locale_t)
+{
+	return wcsrtombs(s, ws, n, st);
 }

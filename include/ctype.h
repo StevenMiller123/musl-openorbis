@@ -6,6 +6,7 @@ extern "C" {
 #endif
 
 #include <features.h>
+#include <_ctype.h>
 
 int   isalnum(int);
 int   isalpha(int);

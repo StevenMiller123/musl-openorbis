@@ -5,6 +5,7 @@
 #include <stddef.h>
 #include <string.h>
 #include <strings.h>
+#include <xlocale.h>
 
 char *strptime(const char *restrict s, const char *restrict f, struct tm *restrict tm)
 {
@@ -203,4 +204,9 @@ char *strptime(const char *restrict s, const char *restrict f, struct tm *restri
 		else if (tm->tm_year <= 68) tm->tm_year += 100;
 	}
 	return (char *)s;
+}
+
+char *strptime_l(const char *restrict s, const char *restrict f, struct tm *restrict tm, locale_t)
+{
+	return strptime(s, f, tm);
 }

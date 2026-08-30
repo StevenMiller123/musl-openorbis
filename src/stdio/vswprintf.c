@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include <wchar.h>
+#include <xlocale.h>
 
 struct cookie {
 	wchar_t *ws;
@@ -57,4 +58,9 @@ int vswprintf(wchar_t *restrict s, size_t n, const wchar_t *restrict fmt, va_lis
 	r = vfwprintf(&f, fmt, ap);
 	sw_write(&f, 0, 0);
 	return r>=n ? -1 : r;
+}
+
+int vswprintf_l(wchar_t *restrict s, size_t n, locale_t, const wchar_t *restrict fmt, va_list ap)
+{
+	return vswprintf(s, n, fmt, ap);
 }

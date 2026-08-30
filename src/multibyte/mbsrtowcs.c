@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "internal.h"
+#include <xlocale.h>
 
 size_t mbsrtowcs(wchar_t *restrict ws, const char **restrict src, size_t wn, mbstate_t *restrict st)
 {
@@ -117,4 +118,9 @@ resume:
 	errno = EILSEQ;
 	if (ws) *src = (const void *)s;
 	return -1;
+}
+
+size_t mbsrtowcs_l(wchar_t *restrict ws, const char **restrict src, size_t wn, mbstate_t *restrict st, locale_t)
+{
+	return mbsrtowcs(ws, src, wn, st);
 }

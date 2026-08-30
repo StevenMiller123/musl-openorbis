@@ -1,5 +1,6 @@
 #include "stdio_impl.h"
 #include <wchar.h>
+#include <xlocale.h>
 
 static size_t wstring_read(FILE *f, unsigned char *buf, size_t len)
 {
@@ -25,6 +26,17 @@ static size_t wstring_read(FILE *f, unsigned char *buf, size_t len)
 }
 
 int vswscanf(const wchar_t *restrict s, const wchar_t *restrict fmt, va_list ap)
+{
+	unsigned char buf[256];
+	FILE f = {
+		.buf = buf, .buf_size = sizeof buf,
+		.cookie = (void *)s,
+		.read = wstring_read, .lock = -1
+	};
+	return vfwscanf(&f, fmt, ap);
+}
+
+int vswscanf_l(const wchar_t *restrict s, locale_t, const wchar_t *restrict fmt, va_list ap)
 {
 	unsigned char buf[256];
 	FILE f = {

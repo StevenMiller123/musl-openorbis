@@ -1,6 +1,7 @@
 #include "stdio_impl.h"
 #include "locale_impl.h"
 #include <wchar.h>
+#include <xlocale.h>
 
 int fputws(const wchar_t *restrict ws, FILE *restrict f)
 {
@@ -24,6 +25,11 @@ int fputws(const wchar_t *restrict ws, FILE *restrict f)
 
 	*ploc = loc;
 	return l; /* 0 or -1 */
+}
+
+int fputws_l(const wchar_t *restrict ws, FILE *restrict f, locale_t)
+{
+	return fputws(ws, f);
 }
 
 weak_alias(fputws, fputws_unlocked);

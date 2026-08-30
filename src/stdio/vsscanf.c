@@ -1,5 +1,6 @@
 #include "stdio_impl.h"
 #include <string.h>
+#include <xlocale.h>
 
 static size_t string_read(FILE *f, unsigned char *buf, size_t len)
 {
@@ -22,6 +23,11 @@ int vsscanf(const char *restrict s, const char *restrict fmt, va_list ap)
 		.read = string_read, .lock = -1
 	};
 	return vfscanf(&f, fmt, ap);
+}
+
+int vsscanf_l(const char *restrict s, locale_t, const char *restrict fmt, va_list ap)
+{
+	return vsscanf(s, fmt, ap);
 }
 
 weak_alias(vsscanf,__isoc99_vsscanf);
