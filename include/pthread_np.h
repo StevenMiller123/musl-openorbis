@@ -5,6 +5,7 @@
 extern "C" {
 #endif
 
+#define __NEED_time_t
 #define __NEED_struct_timespec
 #define __NEED_pthread_t
 #define __NEED_pthread_attr_t
