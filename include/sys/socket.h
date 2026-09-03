@@ -339,6 +339,9 @@ struct sockaddr_storage {
 	unsigned long __ss_align;
 };
 
+int __sys_socketex(const char*, int, int, int);
+int __sys_socket(int, int, int);
+
 int socket (int, int, int);
 int socketpair (int, int, int, int [2]);
 
