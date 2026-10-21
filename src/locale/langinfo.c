@@ -32,7 +32,6 @@ char *__nl_langinfo_l(nl_item item, locale_t loc)
 	int idx = item & 65535;
 	const char *str;
 
-	/* FreeBSD semantics: a null locale_t is the C locale */
 	if (!loc) loc = C_LOCALE;
 
 	if (item == CODESET) return loc->cat[LC_CTYPE] ? "UTF-8" : "ASCII";

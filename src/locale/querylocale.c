@@ -2,7 +2,6 @@
 #include <xlocale.h>
 #include "locale_impl.h"
 
-/* FreeBSD: name of the lowest category set in mask */
 const char *querylocale(int mask, locale_t loc)
 {
 	int cat;

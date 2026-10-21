@@ -41,7 +41,6 @@ unsigned long strtoul_l(const char *, char **, int, locale_t);
 unsigned long long strtoull_l(const char *, char **, int, locale_t);
 size_t wcstombs_l(char *, const wchar_t *, size_t, locale_t);
 int wctomb_l(char *, wchar_t, locale_t);
-/* also in <stdlib.h> under _GNU_SOURCE; FreeBSD declares them here */
 float strtof_l(const char *__restrict, char **__restrict, locale_t);
 double strtod_l(const char *__restrict, char **__restrict, locale_t);
 long double strtold_l(const char *__restrict, char **__restrict, locale_t);

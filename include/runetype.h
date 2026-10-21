@@ -1,8 +1,6 @@
 #ifndef _RUNETYPE_H
 #define _RUNETYPE_H
 
-/* FreeBSD rune locale tables. Only the C locale's table is provided. */
-
 #ifdef __cplusplus
 extern "C" {
 #endif

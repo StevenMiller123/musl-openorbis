@@ -1,8 +1,6 @@
 #ifndef _SYS_UMTX_H
 #define _SYS_UMTX_H
 
-/* FreeBSD userland mutex interface. On PS4, _umtx_op is provided by libkernel. */
-
 #ifdef __cplusplus
 extern "C" {
 #endif

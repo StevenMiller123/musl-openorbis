@@ -51,7 +51,6 @@ pid_t fork(void)
 #ifdef SYS_gettid
 		self->tid = __syscall(SYS_gettid);
 #else
-		/* FreeBSD (PS4) has no gettid syscall */
 		self->tid = __syscall(SYS_getpid);
 #endif
 		self->robust_list.off = 0;

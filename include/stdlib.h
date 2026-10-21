@@ -143,7 +143,6 @@ void *valloc (size_t);
 void *memalign(size_t, size_t);
 int getloadavg(double *, int);
 int clearenv(void);
-/* FreeBSD; uint32_t is unsigned int on every musl target */
 unsigned arc4random(void);
 void arc4random_buf(void *, size_t);
 unsigned arc4random_uniform(unsigned);

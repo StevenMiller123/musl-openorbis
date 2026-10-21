@@ -29,7 +29,6 @@ hidden char *__gettextdomain(void);
 
 #define LOC_MAP_FAILED ((const struct __locale_map *)-1)
 
-/* FreeBSD semantics: a null locale_t is the C locale */
 #define LCTRANS(msg, lc, loc) __lctrans(msg, ((loc) ? (loc) : C_LOCALE)->cat[(lc)])
 #define LCTRANS_CUR(msg) __lctrans_cur(msg)
 

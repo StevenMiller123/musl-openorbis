@@ -9,8 +9,6 @@
 #define _BSD_SOURCE 1
 #endif
 
-/* FreeBSD exposes POSIX and BSD interfaces by default even under strict
- * ANSI modes (e.g. -std=c++17); do the same on FreeBSD targets (PS4 apps). */
 #if !defined(_POSIX_SOURCE) && !defined(_POSIX_C_SOURCE) \
  && !defined(_XOPEN_SOURCE) && !defined(_GNU_SOURCE) \
  && !defined(_BSD_SOURCE) && (!defined(__STRICT_ANSI__) || defined(__FreeBSD__))
@@ -18,7 +16,6 @@
 #define _XOPEN_SOURCE 700
 #endif
 
-/* FreeBSD's <sys/cdefs.h> sets this; libc++ checks it on FreeBSD targets */
 #if defined(__FreeBSD__) && !defined(__LONG_LONG_SUPPORTED) \
  && (__STDC_VERSION__ >= 199901L || __cplusplus >= 201103L)
 #define __LONG_LONG_SUPPORTED 1

@@ -1,8 +1,6 @@
 #ifndef _SYS_SYSCTL_H
 #define _SYS_SYSCTL_H
 
-/* FreeBSD sysctl interface. On PS4, sysctl and sysctlbyname are provided by libkernel. */
-
 #ifdef __cplusplus
 extern "C" {
 #endif

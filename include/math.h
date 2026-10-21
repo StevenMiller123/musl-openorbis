@@ -65,8 +65,6 @@ static __inline unsigned long long __DOUBLE_BITS(double __f)
 	return __u.__i;
 }
 
-/* OpenOrbis: libc++ 11's <cmath> needed real C++ overloads for the classification
- * functions. Newer libc++ provides them itself and, as on FreeBSD, expects macros. */
 #if defined(__cplusplus) && defined(_LIBCPP_VERSION) && _LIBCPP_VERSION < 12000
 #define __OO_MATH_CXX_OVERLOADS 1
 #endif
