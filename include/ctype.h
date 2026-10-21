@@ -7,6 +7,7 @@ extern "C" {
 
 #include <features.h>
 #include <_ctype.h>
+#include <runetype.h> /* FreeBSD's <ctype.h> declares _DefaultRuneLocale */
 
 int   isalnum(int);
 int   isalpha(int);

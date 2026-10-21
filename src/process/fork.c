@@ -48,7 +48,12 @@ pid_t fork(void)
 #endif
 	if (!ret) {
 		pthread_t self = __pthread_self();
+#ifdef SYS_gettid
 		self->tid = __syscall(SYS_gettid);
+#else
+		/* FreeBSD (PS4) has no gettid syscall */
+		self->tid = __syscall(SYS_getpid);
+#endif
 		self->robust_list.off = 0;
 		self->robust_list.pending = 0;
 		self->next = self->prev = self;

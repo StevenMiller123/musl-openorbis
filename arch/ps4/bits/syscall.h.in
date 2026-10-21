@@ -407,7 +407,6 @@
 #define __NR_mq_timedreceive	__NR_kmq_timedreceive
 #define __NR_mq_timedsend	__NR_kmq_timedsend
 #define __NR_mq_unlink	__NR_kmq_unlink
-#define __NR_gettid	__NR_getpid
 #define __NR_tkill	__NR_thr_kill
 #define __NR_timer_delete	__NR_ktimer_delete
 #define __NR_timer_create	__NR_ktimer_create
