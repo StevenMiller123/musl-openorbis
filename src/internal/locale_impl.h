@@ -29,7 +29,7 @@ hidden char *__gettextdomain(void);
 
 #define LOC_MAP_FAILED ((const struct __locale_map *)-1)
 
-#define LCTRANS(msg, lc, loc) __lctrans(msg, (loc)->cat[(lc)])
+#define LCTRANS(msg, lc, loc) __lctrans(msg, ((loc) ? (loc) : C_LOCALE)->cat[(lc)])
 #define LCTRANS_CUR(msg) __lctrans_cur(msg)
 
 #define C_LOCALE ((locale_t)&__c_locale)

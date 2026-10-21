@@ -143,6 +143,9 @@ void *valloc (size_t);
 void *memalign(size_t, size_t);
 int getloadavg(double *, int);
 int clearenv(void);
+unsigned arc4random(void);
+void arc4random_buf(void *, size_t);
+unsigned arc4random_uniform(unsigned);
 #define WCOREDUMP(s) ((s) & 0x80)
 #define WIFCONTINUED(s) ((s) == 0xffff)
 #endif

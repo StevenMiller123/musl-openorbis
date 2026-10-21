@@ -65,7 +65,11 @@ static __inline unsigned long long __DOUBLE_BITS(double __f)
 	return __u.__i;
 }
 
-#ifdef __cplusplus
+#if defined(__cplusplus) && defined(_LIBCPP_VERSION) && _LIBCPP_VERSION < 12000
+#define __OO_MATH_CXX_OVERLOADS 1
+#endif
+
+#ifdef __OO_MATH_CXX_OVERLOADS
 
 #define _fpclassify(x) ( \
 	sizeof(x) == sizeof(float) ? __fpclassifyf(x) : \
@@ -189,7 +193,7 @@ __ISREL_DEF(greaterequall, >=, long double)
 	sizeof((x)+(y)) == sizeof(double) ? p(x, y) : \
 	p##l(x, y) )
 
-#ifdef __cplusplus
+#ifdef __OO_MATH_CXX_OVERLOADS
 
 #define _isless(x, y)            __tg_pred_2(x, y, __isless)
 #define _islessequal(x, y)       __tg_pred_2(x, y, __islessequal)
