@@ -16,6 +16,12 @@
 #define _XOPEN_SOURCE 700
 #endif
 
+/* FreeBSD's <sys/cdefs.h> sets this; libc++ checks it on FreeBSD targets */
+#if defined(__FreeBSD__) && !defined(__LONG_LONG_SUPPORTED) \
+ && (__STDC_VERSION__ >= 199901L || __cplusplus >= 201103L)
+#define __LONG_LONG_SUPPORTED 1
+#endif
+
 #if __STDC_VERSION__ >= 199901L
 #define __restrict restrict
 #elif !defined(__GNUC__)
