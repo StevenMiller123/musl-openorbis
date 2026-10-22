@@ -123,7 +123,6 @@ int mlock (const void *, size_t);
 int munlock (const void *, size_t);
 int mlockall (int);
 int munlockall (void);
-int getpagesizes(size_t *, int);
 
 #ifdef _GNU_SOURCE
 void *mremap (void *, size_t, size_t, int, ...);
