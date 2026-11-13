@@ -65,7 +65,11 @@ int mq_notify(mqd_t mqd, const struct sigevent *sev)
 		return syscall(SYS_mq_notify, mqd, sev);
 #endif
 
+#ifdef PS4
+	s = socket(AF_NETLINK, SOCK_RAW, 0);
+#else
 	s = socket(AF_NETLINK, SOCK_RAW|SOCK_CLOEXEC, 0);
+#endif
 	if (s < 0) return -1;
 	args.sock = s;
 

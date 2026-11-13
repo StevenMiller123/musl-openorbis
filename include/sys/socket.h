@@ -23,32 +23,14 @@ struct msghdr {
 	void *msg_name;
 	socklen_t msg_namelen;
 	struct iovec *msg_iov;
-#if __LONG_MAX > 0x7fffffff && __BYTE_ORDER == __BIG_ENDIAN
-	int __pad1;
-#endif
 	int msg_iovlen;
-#if __LONG_MAX > 0x7fffffff && __BYTE_ORDER == __LITTLE_ENDIAN
-	int __pad1;
-#endif
 	void *msg_control;
-#if __LONG_MAX > 0x7fffffff && __BYTE_ORDER == __BIG_ENDIAN
-	int __pad2;
-#endif
 	socklen_t msg_controllen;
-#if __LONG_MAX > 0x7fffffff && __BYTE_ORDER == __LITTLE_ENDIAN
-	int __pad2;
-#endif
 	int msg_flags;
 };
 
 struct cmsghdr {
-#if __LONG_MAX > 0x7fffffff && __BYTE_ORDER == __BIG_ENDIAN
-	int __pad1;
-#endif
 	socklen_t cmsg_len;
-#if __LONG_MAX > 0x7fffffff && __BYTE_ORDER == __LITTLE_ENDIAN
-	int __pad1;
-#endif
 	int cmsg_level;
 	int cmsg_type;
 };
@@ -90,11 +72,6 @@ struct linger {
 #define SOCK_SEQPACKET  5
 #define SOCK_DGRAM_P2P  6
 #define SOCK_STREAM_P2P 10
-
-#ifndef SOCK_CLOEXEC
-#define SOCK_CLOEXEC   02000000
-#define SOCK_NONBLOCK  04000
-#endif
 
 #define PF_UNSPEC       0
 #define PF_NETLINK      PF_UNSPEC
@@ -140,9 +117,7 @@ struct linger {
 #define PF_ARP          35
 #define PF_BLUETOOTH    36
 #define PF_IEEE80211    37
-#define PF_INET_SDP     40
-#define PF_INET6_SDP    42
-#define PF_MAX          42
+#define PF_MAX          38
 
 #define AF_UNSPEC       PF_UNSPEC
 #define AF_NETLINK      PF_NETLINK
@@ -188,8 +163,6 @@ struct linger {
 #define AF_ARP          PF_ARP
 #define AF_BLUETOOTH    PF_BLUETOOTH
 #define AF_IEEE80211    PF_IEEE80211
-#define AF_INET_SDP     PF_INET_SDP
-#define AF_INET6_SDP    PF_INET6_SDP
 #define AF_MAX          PF_MAX
 
 #ifndef SO_DEBUG
@@ -203,6 +176,12 @@ struct linger {
 #define SO_LINGER       0x0080
 #define SO_OOBINLINE    0x0100
 #define SO_REUSEPORT    0x0200
+#define SO_TIMESTAMP    0x0400
+#define SO_NOSIGPIPE    0x0800
+#define SO_ACCEPTFILTER 0x1000
+#define SO_BINTIME      0x2000
+#define SO_NO_OFFLOAD   0x4000
+#define SO_NO_DDP       0x8000
 #define SO_ONESBCAST    0x10000
 #define SO_USECRYPTO    0x20000
 #define SO_USESIGNATURE 0x40000
@@ -215,6 +194,15 @@ struct linger {
 #define SO_RCVTIMEO     0x1006
 #define SO_ERROR        0x1007
 #define SO_TYPE         0x1008
+#define SO_LABEL        0x1009
+#define SO_PEERLABEL    0x1010
+#define SO_LISTENQLIMIT 0x1011
+#define SO_LISTENQLEN   0x1012
+#define SO_LISTENINCQLEN 0x1013
+#define SO_SETFIB       0x1014
+#define SO_USER_COOKIE  0x1015
+#define SO_PROTOCOL     0x1016
+#define SO_PROTOTYPE    SO_PROTOCOL
 
 #define SO_ERROR_EX     0x1107
 #define SO_ACCEPTTIMEO  0x1108
@@ -225,107 +213,51 @@ struct linger {
 #define SO_PRIORITY     0x1203
 #endif
 
-
-#ifndef SO_TIMESTAMP
-#if __LONG_MAX == 0x7fffffff
-#define SO_TIMESTAMP    0x0400
-#define SO_TIMESTAMPNS  64
-#define SO_TIMESTAMPING 65
-#else
-#define SO_TIMESTAMP    0x0400
-#define SO_TIMESTAMPNS  35
-#define SO_TIMESTAMPING 37
-#endif
-#endif
-
-#define SO_SECURITY_AUTHENTICATION              22
-#define SO_SECURITY_ENCRYPTION_TRANSPORT        23
-#define SO_SECURITY_ENCRYPTION_NETWORK          24
-
-#define SO_BINDTODEVICE 25
-
-#define SO_ATTACH_FILTER        26
-#define SO_DETACH_FILTER        27
-#define SO_GET_FILTER           SO_ATTACH_FILTER
-
-#define SO_PEERNAME             28
-#define SCM_TIMESTAMP           SO_TIMESTAMP
-#define SO_PASSSEC              34
-#define SCM_TIMESTAMPNS         SO_TIMESTAMPNS
-#define SO_MARK                 36
-#define SCM_TIMESTAMPING        SO_TIMESTAMPING
-#define SO_RXQ_OVFL             40
-#define SO_WIFI_STATUS          41
-#define SCM_WIFI_STATUS         SO_WIFI_STATUS
-#define SO_PEEK_OFF             42
-#define SO_NOFCS                43
-#define SO_LOCK_FILTER          44
-#define SO_SELECT_ERR_QUEUE     45
-#define SO_BUSY_POLL            46
-#define SO_MAX_PACING_RATE      47
-#define SO_BPF_EXTENSIONS       48
-#define SO_INCOMING_CPU         49
-#define SO_ATTACH_BPF           50
-#define SO_DETACH_BPF           SO_DETACH_FILTER
-#define SO_ATTACH_REUSEPORT_CBPF 51
-#define SO_ATTACH_REUSEPORT_EBPF 52
-#define SO_CNX_ADVICE           53
-#define SCM_TIMESTAMPING_OPT_STATS 54
-#define SO_MEMINFO              55
-#define SO_INCOMING_NAPI_ID     56
-#define SO_COOKIE               57
-#define SCM_TIMESTAMPING_PKTINFO 58
-#define SO_PEERGROUPS           59
-#define SO_ZEROCOPY             60
-#define SO_TXTIME               61
-#define SCM_TXTIME              SO_TXTIME
-#define SO_BINDTOIFINDEX        62
-#define SO_DETACH_REUSEPORT_BPF 68
-
 #ifndef SOL_SOCKET
 #define SOL_SOCKET      0xffff
 #endif
 
 #define SOMAXCONN       128
 
-#define MSG_OOB       0x0001
-#define MSG_PEEK      0x0002
-#define MSG_DONTROUTE 0x0004
-#define MSG_CTRUNC    0x0008
-#define MSG_PROXY     0x0010
-#define MSG_TRUNC     0x0020
-#define MSG_DONTWAIT  0x0040
-#define MSG_EOR       0x0080
-#define MSG_WAITALL   0x0100
-#define MSG_FIN       0x0200
-#define MSG_SYN       0x0400
-#define MSG_CONFIRM   0x0800
-#define MSG_RST       0x1000
-#define MSG_ERRQUEUE  0x2000
-#define MSG_NOSIGNAL  0x4000
-#define MSG_MORE      0x8000
-#define MSG_WAITFORONE 0x10000
-#define MSG_BATCH     0x40000
-#define MSG_ZEROCOPY  0x4000000
-#define MSG_FASTOPEN  0x20000000
-#define MSG_CMSG_CLOEXEC 0x40000000
+#define MSG_OOB          0x1
+#define MSG_PEEK         0x2
+#define MSG_DONTROUTE    0x4
+#define MSG_EOR          0x8
+#define MSG_TRUNC        0x10
+#define MSG_CTRUNC       0x20
+#define MSG_WAITALL      0x40
+#define MSG_DONTWAIT     0x80
+#define MSG_EOF          0x100
+#define MSG_NOTIFICATION 0x2000
+#define MSG_NBIO         0x4000
+#define MSG_COMPAT       0x8000
+#define MSG_NOSIGNAL     0x20000
+#define MSG_USECRYPTO    0x100000
+#define MSG_USESIGNATURE 0x200000
+#define MSG_PEEKLEN      (0x400000 | MSG_PEEK)
 
-#define __CMSG_LEN(cmsg) (((cmsg)->cmsg_len + sizeof(long) - 1) & ~(long)(sizeof(long) - 1))
-#define __CMSG_NEXT(cmsg) ((unsigned char *)(cmsg) + __CMSG_LEN(cmsg))
-#define __MHDR_END(mhdr) ((unsigned char *)(mhdr)->msg_control + (mhdr)->msg_controllen)
+#define CMSG_ALIGN(n) (((size_t)(n) + sizeof(long) - 1) & ~(size_t)(sizeof(long) - 1))
 
-#define CMSG_DATA(cmsg) ((unsigned char *) (((struct cmsghdr *)(cmsg)) + 1))
-#define CMSG_NXTHDR(mhdr, cmsg) ((cmsg)->cmsg_len < sizeof (struct cmsghdr) || \
-	__CMSG_LEN(cmsg) + sizeof(struct cmsghdr) >= __MHDR_END(mhdr) - (unsigned char *)(cmsg) \
-	? 0 : (struct cmsghdr *)__CMSG_NEXT(cmsg))
-#define CMSG_FIRSTHDR(mhdr) ((size_t) (mhdr)->msg_controllen >= sizeof (struct cmsghdr) ? (struct cmsghdr *) (mhdr)->msg_control : (struct cmsghdr *) 0)
+#define CMSG_DATA(cmsg) ((unsigned char *)(cmsg) + CMSG_ALIGN(sizeof(struct cmsghdr)))
+#define CMSG_NXTHDR(mhdr, cmsg) \
+	((char *)(cmsg) == 0 ? CMSG_FIRSTHDR(mhdr) : \
+	 ((char *)(cmsg) + CMSG_ALIGN(((struct cmsghdr *)(cmsg))->cmsg_len) + \
+	  CMSG_ALIGN(sizeof(struct cmsghdr)) > \
+	  (char *)(mhdr)->msg_control + (mhdr)->msg_controllen) ? \
+	 (struct cmsghdr *)0 : \
+	 (struct cmsghdr *)(void *)((char *)(cmsg) + \
+	  CMSG_ALIGN(((struct cmsghdr *)(cmsg))->cmsg_len)))
+#define CMSG_FIRSTHDR(mhdr) \
+	((mhdr)->msg_controllen >= sizeof(struct cmsghdr) ? \
+	 (struct cmsghdr *)(mhdr)->msg_control : (struct cmsghdr *)0)
 
-#define CMSG_ALIGN(len) (((len) + sizeof (size_t) - 1) & (size_t) ~(sizeof (size_t) - 1))
-#define CMSG_SPACE(len) (CMSG_ALIGN (len) + CMSG_ALIGN (sizeof (struct cmsghdr)))
-#define CMSG_LEN(len)   (CMSG_ALIGN (sizeof (struct cmsghdr)) + (len))
+#define CMSG_SPACE(len) (CMSG_ALIGN(sizeof(struct cmsghdr)) + CMSG_ALIGN(len))
+#define CMSG_LEN(len)   (CMSG_ALIGN(sizeof(struct cmsghdr)) + (len))
 
 #define SCM_RIGHTS      0x01
-#define SCM_CREDENTIALS 0x02
+#define SCM_TIMESTAMP   0x02
+#define SCM_CREDS       0x03
+#define SCM_BINTIME     0x04
 
 struct sockaddr {
 	unsigned char sa_len;
@@ -334,9 +266,11 @@ struct sockaddr {
 };
 
 struct sockaddr_storage {
+	unsigned char ss_len;
 	sa_family_t ss_family;
-	char __ss_padding[128-sizeof(long)-sizeof(sa_family_t)];
-	unsigned long __ss_align;
+	char __ss_pad1[6];
+	long long __ss_align;
+	char __ss_pad2[112];
 };
 
 int __sys_socketex(const char*, int, int, int);

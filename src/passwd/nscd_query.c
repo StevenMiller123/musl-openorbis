@@ -39,7 +39,11 @@ retry:
 	memset(buf, 0, len);
 	buf[0] = NSCDVERSION;
 
+#ifdef PS4
+	fd = socket(PF_UNIX, SOCK_STREAM, 0);
+#else
 	fd = socket(PF_UNIX, SOCK_STREAM | SOCK_CLOEXEC, 0);
+#endif
 	if (fd < 0) return NULL;
 
 	if(!(f = fdopen(fd, "r"))) {

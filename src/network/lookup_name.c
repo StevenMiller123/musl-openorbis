@@ -384,7 +384,11 @@ int __lookup_name(struct address buf[static MAXADDRS], char canon[static 256], c
 		int dlabel = dpolicy->label;
 		int dprec = dpolicy->prec;
 		int prefixlen = 0;
+#ifdef PS4
+		int fd = socket(family, SOCK_DGRAM, IPPROTO_UDP);
+#else
 		int fd = socket(family, SOCK_DGRAM|SOCK_CLOEXEC, IPPROTO_UDP);
+#endif
 		if (fd >= 0) {
 			if (!connect(fd, da, dalen)) {
 				key |= DAS_USABLE;

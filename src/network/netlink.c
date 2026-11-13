@@ -44,7 +44,11 @@ int __rtnetlink_enumerate(int link_af, int addr_af, int (*cb)(void *ctx, struct 
 {
 	int fd, r;
 
+#ifdef PS4
+	fd = socket(PF_NETLINK, SOCK_RAW, NETLINK_ROUTE);
+#else
 	fd = socket(PF_NETLINK, SOCK_RAW|SOCK_CLOEXEC, NETLINK_ROUTE);
+#endif
 	if (fd < 0) return -1;
 	r = __netlink_enumerate(fd, 1, RTM_GETLINK, link_af, cb, ctx);
 	if (!r) r = __netlink_enumerate(fd, 2, RTM_GETADDR, addr_af, cb, ctx);

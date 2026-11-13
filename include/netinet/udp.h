@@ -22,19 +22,13 @@ struct udphdr {
 	uint16_t uh_sum;
 };
 
-#define UDP_CORK	1
-#define UDP_ENCAP	100
-#define UDP_NO_CHECK6_TX 101
-#define UDP_NO_CHECK6_RX 102
-#define UDP_SEGMENT	103
-#define UDP_GRO		104
+#define UDP_ENCAP	0x01
 
 #define UDP_ENCAP_ESPINUDP_NON_IKE 1
 #define UDP_ENCAP_ESPINUDP	2
-#define UDP_ENCAP_L2TPINUDP	3
-#define UDP_ENCAP_GTP0		4
-#define UDP_ENCAP_GTP1U		5
-#define UDP_ENCAP_RXRPC		6
+
+#define UDP_ENCAP_ESPINUDP_PORT		500
+#define UDP_ENCAP_ESPINUDP_MAXFRAGLEN	552
 
 #define SOL_UDP            17
 

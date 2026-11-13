@@ -59,8 +59,12 @@ int getaddrinfo(const char *restrict host, const char *restrict serv, const stru
 		socklen_t tl[2] = { sizeof lo4, sizeof lo6 };
 		for (i=0; i<2; i++) {
 			if (family==tf[1-i]) continue;
+#ifdef PS4
+			int s = socket(tf[i], SOCK_DGRAM, IPPROTO_UDP);
+#else
 			int s = socket(tf[i], SOCK_CLOEXEC|SOCK_DGRAM,
 				IPPROTO_UDP);
+#endif
 			if (s>=0) {
 				int cs;
 				pthread_setcancelstate(
